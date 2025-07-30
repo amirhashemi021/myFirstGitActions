@@ -1,0 +1,17 @@
+name: Super-Linter
+# Listening for a push event.
+on: push
+
+jobs:
+  super-lint:
+    name: Lint code base
+    runs-on: ubuntu-latest
+    steps:   #Checkout the code upon the event
+      - name: Checkout code
+        uses: actions/checkout@v2
+#Running superlinter against it to make sure it is conforms to the linting standards.
+      - name: Run Super-Linter
+        uses: github/super-linter@v3
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
